@@ -1,4 +1,7 @@
 <?php
+
+/** @noinspection PhpComposerExtensionStubsInspection */
+
 namespace GuzzleHttp\Handler;
 
 use GuzzleHttp\Exception\RequestException;

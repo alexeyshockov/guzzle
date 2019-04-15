@@ -9,7 +9,7 @@ use Psr\Http\Message\RequestInterface;
  */
 class HandlerStack
 {
-    /** @var callable */
+    /** @var callable|null */
     private $handler;
 
     /** @var array */
@@ -252,11 +252,11 @@ class HandlerStack
     /**
      * Provides a debug string for a given callable.
      *
-     * @param array|callable $fn Function to write as a string.
+     * @param callable $fn Function to write as a string.
      *
      * @return string
      */
-    private function debugCallable($fn)
+    private function debugCallable(callable $fn)
     {
         if (is_string($fn)) {
             return "callable({$fn})";
@@ -268,6 +268,7 @@ class HandlerStack
                 : "callable(['" . get_class($fn[0]) . "', '{$fn[1]}'])";
         }
 
+        /** @var object $fn */
         return 'callable(' . spl_object_hash($fn) . ')';
     }
 }

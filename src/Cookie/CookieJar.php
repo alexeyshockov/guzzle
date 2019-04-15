@@ -254,7 +254,7 @@ class CookieJar implements CookieJarInterface
     private function getCookiePathFromRequest(RequestInterface $request)
     {
         $uriPath = $request->getUri()->getPath();
-        if (''  === $uriPath) {
+        if ('' === $uriPath) {
             return '/';
         }
         if (0 !== strpos($uriPath, '/')) {
@@ -263,7 +263,9 @@ class CookieJar implements CookieJarInterface
         if ('/' === $uriPath) {
             return '/';
         }
-        if (0 === $lastSlashPos = strrpos($uriPath, '/')) {
+        /** @var int $lastSlashPos */
+        $lastSlashPos = strrpos($uriPath, '/');
+        if (0 === $lastSlashPos) {
             return '/';
         }
 

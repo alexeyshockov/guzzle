@@ -76,7 +76,7 @@ class RedirectMiddleware
     /**
      * @param RequestInterface  $request
      * @param array             $options
-     * @param ResponseInterface|PromiseInterface $response
+     * @param ResponseInterface $response
      *
      * @return ResponseInterface|PromiseInterface
      */
@@ -85,7 +85,7 @@ class RedirectMiddleware
         array $options,
         ResponseInterface $response
     ) {
-        if (substr($response->getStatusCode(), 0, 1) != '3'
+        if (substr((string) $response->getStatusCode(), 0, 1) != '3'
             || !$response->hasHeader('Location')
         ) {
             return $response;
@@ -103,7 +103,7 @@ class RedirectMiddleware
             );
         }
 
-        /** @var PromiseInterface|ResponseInterface $promise */
+        /** @var PromiseInterface $promise */
         $promise = $this($nextRequest, $options);
 
         // Add headers to be able to track history of redirects.

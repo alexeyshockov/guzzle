@@ -62,7 +62,7 @@ interface CookieJarInterface extends \Countable, \IteratorAggregate
      * @param string $path   Clears cookies matching a domain and path
      * @param string $name   Clears cookies matching a domain, path, and name
      *
-     * @return CookieJarInterface
+     * @return void
      */
     public function clear($domain = null, $path = null, $name = null);
 

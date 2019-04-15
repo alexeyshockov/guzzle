@@ -1,9 +1,11 @@
 <?php
+
+/** @noinspection PhpComposerExtensionStubsInspection */
+
 namespace GuzzleHttp\Handler;
 
 use GuzzleHttp\Promise as P;
 use GuzzleHttp\Promise\Promise;
-use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -49,6 +51,7 @@ class CurlMultiHandler
 
     public function __get($name)
     {
+        // TODO: extract to a separate class and get rid of this magic property
         if ($name === '_mh') {
             return $this->_mh = curl_multi_init();
         }

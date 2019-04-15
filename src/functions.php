@@ -18,6 +18,7 @@ function uri_template($template, array $variables)
 {
     if (extension_loaded('uri_template')) {
         // @codeCoverageIgnoreStart
+        /** @psalm-suppress UndefinedFunction */
         return \uri_template($template, $variables);
         // @codeCoverageIgnoreEnd
     }
@@ -47,6 +48,7 @@ function describe_type($input)
             return 'array(' . count($input) . ')';
         default:
             ob_start();
+            /** @psalm-suppress ForbiddenCode */
             var_dump($input);
             // normalize float vs double
             return str_replace('double(', 'float(', rtrim(ob_get_clean()));

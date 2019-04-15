@@ -1,4 +1,7 @@
 <?php
+
+/** @noinspection PhpComposerExtensionStubsInspection */
+
 namespace GuzzleHttp\Handler;
 
 use GuzzleHttp\Psr7\Response;

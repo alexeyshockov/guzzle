@@ -14,7 +14,7 @@ class RequestException extends TransferException
     /** @var RequestInterface */
     private $request;
 
-    /** @var ResponseInterface */
+    /** @var null|ResponseInterface */
     private $response;
 
     /** @var array */

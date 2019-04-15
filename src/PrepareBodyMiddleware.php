@@ -11,11 +11,14 @@ use Psr\Http\Message\RequestInterface;
  */
 class PrepareBodyMiddleware
 {
-    /** @var callable  */
+    /**
+     * @var callable
+     * @psalm-var callable(RequestInterface, array):PromiseInterface
+     */
     private $nextHandler;
 
     /**
-     * @param callable $nextHandler Next handler to invoke.
+     * @param callable(RequestInterface, array):PromiseInterface $nextHandler Next handler to invoke.
      */
     public function __construct(callable $nextHandler)
     {
