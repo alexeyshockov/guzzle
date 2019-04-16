@@ -73,9 +73,9 @@ class SetCookie
     {
         $this->data = array_replace(self::$defaults, $data);
         // Extract the Expires value and turn it into a UNIX timestamp if needed
-        if (!$this->getExpires() && $this->getMaxAge()) {
+        if (!$this->getExpires() && ($maxAge = $this->getMaxAge())) {
             // Calculate the Expires date
-            $this->setExpires(time() + $this->getMaxAge());
+            $this->setExpires(time() + $maxAge);
         } elseif ($this->getExpires() && !is_numeric($this->getExpires())) {
             $this->setExpires($this->getExpires());
         }
@@ -335,7 +335,11 @@ class SetCookie
     {
         // Remove the leading '.' as per spec in RFC 6265.
         // http://tools.ietf.org/html/rfc6265#section-5.2.3
-        $cookieDomain = $this->getDomain() ? ltrim($this->getDomain(), '.') : null;
+
+        $cookieDomain = $this->getDomain();
+        if ($cookieDomain) {
+            $cookieDomain = ltrim($cookieDomain, '.');
+        }
 
         // Domain not set or exact match.
         if (!$cookieDomain || !strcasecmp($domain, $cookieDomain)) {

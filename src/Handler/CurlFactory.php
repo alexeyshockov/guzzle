@@ -402,7 +402,7 @@ class CurlFactory implements CurlFactoryInterface
         }
         $timeoutRequiresNoSignal = false;
         if (isset($options['timeout'])) {
-            $timeoutRequiresNoSignal |= $options['timeout'] < 1;
+            $timeoutRequiresNoSignal = $timeoutRequiresNoSignal || ($options['timeout'] < 1);
             $conf[CURLOPT_TIMEOUT_MS] = $options['timeout'] * 1000;
         }
 
@@ -416,7 +416,7 @@ class CurlFactory implements CurlFactoryInterface
         }
 
         if (isset($options['connect_timeout'])) {
-            $timeoutRequiresNoSignal |= $options['connect_timeout'] < 1;
+            $timeoutRequiresNoSignal = $timeoutRequiresNoSignal || ($options['connect_timeout'] < 1);
             $conf[CURLOPT_CONNECTTIMEOUT_MS] = $options['connect_timeout'] * 1000;
         }
 
