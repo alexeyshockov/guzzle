@@ -21,10 +21,15 @@ use Psr\Http\Message\ResponseInterface;
  * @method Promise\PromiseInterface postAsync(string|UriInterface $uri, array $options = [])
  * @method Promise\PromiseInterface patchAsync(string|UriInterface $uri, array $options = [])
  * @method Promise\PromiseInterface deleteAsync(string|UriInterface $uri, array $options = [])
+ *
+ * @psalm-type guzzle_client_config=array{handler?:callable,base_uri?:null|string|UriInterface}
  */
 class Client implements ClientInterface
 {
-    /** @var array Default request options */
+    /**
+     * @var array Default request options
+     * @psalm-var guzzle_client_config
+     */
     private $config;
 
     /**
@@ -56,6 +61,7 @@ class Client implements ClientInterface
      * - **: any request option
      *
      * @param array $config Client configuration settings.
+     * @psalm-param guzzle_client_config $config
      *
      * @see \GuzzleHttp\RequestOptions for a list of available request options.
      */
@@ -154,6 +160,7 @@ class Client implements ClientInterface
      * Configures the default options for a client.
      *
      * @param array $config
+     * @psalm-param guzzle_client_config $config
      */
     private function configureDefaults(array $config)
     {
