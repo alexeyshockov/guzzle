@@ -87,7 +87,7 @@ class MessageFormatter
                         break;
                     case 'req_headers':
                         $result = trim($request->getMethod()
-                                . ' ' . $request->getRequestTarget())
+                            . ' ' . $request->getRequestTarget())
                             . ' HTTP/' . $request->getProtocolVersion() . "\r\n"
                             . $this->headers($request);
                         break;
@@ -161,8 +161,7 @@ class MessageFormatter
                         }
                 }
 
-                $cache[$matches[1]] = $result;
-                return $result;
+                return $cache[$matches[1]] = (string) $result;
             },
             $this->template
         );
